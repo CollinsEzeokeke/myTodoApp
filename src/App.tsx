@@ -36,6 +36,12 @@ function App() {
             <TodoItem key={todo.id} todo={todo} todos={todos} setTodos={setTodos} onCompletedChange={setTodoCompleted}/>
           ))}
         </div>
+        
+        {todos.length === 0 && (
+                <p className="text-center text-white font-bold text-lg p-2 mt-2">
+                    No todo here yet add something!!!
+                </p>
+            )}
       </div>
     </main>
   )

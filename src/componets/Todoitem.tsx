@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Todo } from "../types/todo";
 import DeleteTodoForm from "./DeleteTodoForm";
 
@@ -10,7 +9,11 @@ interface TodoItemProps{
 }
 
 export default function TodoItem({ todo,onCompletedChange,setTodos ,todos}: TodoItemProps) {
+
+
+
     return(
+        <>
         <div>
             <label className="flex items-center font-bold gap-10 border capitalize rounded-md p-2 w-11/12 border-gray-400 bg-white hover:bg-slate-700 hover:border-none hover:text-white hover:text-2xl hover:h-18">
                 <div className="w-full">
@@ -22,5 +25,6 @@ export default function TodoItem({ todo,onCompletedChange,setTodos ,todos}: Todo
                 <DeleteTodoForm aTodo={todo} todos={todos} setTodos={setTodos}/>
             </label>
         </div>
+        </>
     )
 }

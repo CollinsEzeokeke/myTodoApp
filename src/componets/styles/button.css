@@ -1,47 +1,148 @@
-button {
-    width: 10em;
-    position: relative;
-    height: 3.5em;
-    border: 3px ridge #E53E3E; /* Changed from blue to red */
-    outline: none;
-    background-color: transparent;
-    color: white;
-    transition: 1s;
-    border-radius: 0.3em;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  button::after {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: 3%;
-    width: 95%;
-    height: 40%;
-    background-color: #212121; /* This can remain the same as it's a neutral color */
-    transition: 0.5s;
-    transform-origin: center;
-  }
-  
-  button::before {
-    content: "";
-    transform-origin: center;
-    position: absolute;
-    top: 80%;
-    left: 3%;
-    width: 95%;
-    height: 40%;
-    background-color: #212121; /* This can also remain the same */
-    transition: 0.5s;
-  }
-  
-  button:hover::before, button:hover::after {
-    transform: scale(0);
-  }
-  
-  button:hover {
-    box-shadow: inset 0px 0px 25px #E53E3E; /* Changed from blue to red */
-  }
-  
+/* Buttons for DeleteTodoForm */
+
+.deleteButton button{
+  border: 3px ridge white;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  transition: 1s;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.deleteButton  button::after {
+  position: absolute;
+  top: -10px;
+  left: 3%;
+  background-color: #212121;
+  transition: 0.5s;
+  transform-origin: center;
+}
+
+.deleteButton  button::before {
+  transform-origin: center;
+  position: absolute;
+  top: 80%;
+  left: 3%;
+  background-color: #212121;
+  transition: 0.5s;
+}
+
+.deleteButton  button:hover::before, button:hover::after {
+  transform: scale(0);
+}
+
+.deleteButton  button:hover {
+  background-color: white;
+  color: black;
+  border: 3px ridge #E53E3E;
+  box-shadow: inset 0px 0px 25px #E53E3E; /* Changed from blue to red */
+}
+
+
+/* Buttons for AddTodoForm */
+
+.button {
+  --main-focus: #2d8cf0;
+  /* --font-color: #323232; */
+  --bg-color-sub: white;
+  --bg-color: #eee;
+  --main-color: white;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--main-color);
+  box-shadow: 2px 2pxvar(--main-color);
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.button, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.button .button__text {
+  transform: translateX(22px);
+  color: var(--font-color);
+}
+
+.button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: var(--bg-color-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button .svg {
+  width: 20px;
+  color: black;
+  font-weight: 900;
+  /* fill: var(--main-color); */
+}
+
+.button:hover {
+  background: var(--bg-color);
+}
+
+.button:hover .button__text {
+  color: transparent;
+}
+
+.button:hover .button__icon {
+  width: 100%;
+  transform: translateX(0);
+}
+
+.button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px var(--main-color);
+}
+
+/* Input for AddTodoForm */
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  border: solid 1.5px #9e9e9e;
+  border-radius: 1rem;
+  background: none;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #f5f5f5;
+  transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-label {
+  position: absolute;
+  left: 15px;
+  bottom: 25px;
+  color: #e8e8e8;
+  pointer-events: none;
+  transform: translateY(1rem);
+  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input:focus,
+.input:not(:placeholder-shown) {
+  outline: none;
+  border: 1.5px solid white;
+}
+
+.input:focus ~ .user-label,
+.input:not(:placeholder-shown) ~ .user-label {
+  transform: translateY(-60%) scale(0.8);
+  background-color: none;
+  position: absolute;
+  bottom: 25px;
+  left: -15px;
+  padding: 0 0.2em;
+  color: #2196f3;
+}

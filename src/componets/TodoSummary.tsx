@@ -1,5 +1,5 @@
 import type { Todo } from "../types/todo"
-// import './styles/button.css'
+import './styles/button.css'
 
 interface TodoSummaryProps {
      todos: Todo[];
@@ -14,7 +14,7 @@ export default function TodoSummary({todos, setTodos} : TodoSummaryProps) {
 }
 
     return (
-        <div className="text-center space-y-7 text-white">
+        <div className="text-center space-y-7 text-white deleteButton">
             {todos.length === 0 ? 
             '' 
             :

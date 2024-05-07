@@ -6,18 +6,17 @@ interface TodoItemProps{
     todos:Todo[],
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
     onCompletedChange: (id: number, completed: boolean) => void;
+    onClickChange: (todo: Todo) => void;
 }
 
-export default function TodoItem({ todo,onCompletedChange,setTodos ,todos}: TodoItemProps) {
-
-
+export default function TodoItem({ todo,onCompletedChange,setTodos ,todos, onClickChange}: TodoItemProps) {
 
     return(
         <>
         <div>
             <label className="flex items-center font-bold gap-10 border capitalize rounded-md p-2 w-11/12 border-gray-400 bg-white hover:bg-slate-700 hover:border-none hover:text-white hover:text-2xl hover:h-18">
                 <div className="w-full">
-                <input type="checkbox" checked={todo.completed} onChange={(e) => onCompletedChange(todo.id, e.target.checked)} className="scale-125 hover:size-4"/>
+                <input type="checkbox" checked={todo.completed} onChange={(e) => onCompletedChange(todo.id, e.target.checked)} className="scale-125 hover:size-4" onClick={()=>onClickChange(todo)}/>
                 <span className={` px-2 ${todo.completed ? 'line-through text-gray-400' : ''}`}>
                     {todo.title}
                 </span>

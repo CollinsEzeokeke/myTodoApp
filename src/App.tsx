@@ -2,6 +2,7 @@ import { useState } from "react"
 import TodoItem from "./componets/Todoitem"
 import AddTodoForm from "./componets/AddTodoForm";
 import type { Todo } from "./types/todo";
+import TodoSummary from "./componets/TodoSummary";
 
 function App() {
 
@@ -25,15 +26,26 @@ function App() {
     ...prevTodos
   ])
 }
-  
+
+
+const onClickChange = (todo:Todo) =>{
+  setTodos(prevItems => {
+    const index = prevItems.indexOf(todo);
+    if (index === -1) return prevItems; // Item not found, return the array as is
+    const newItems = [...prevItems]; // Make a copy of the array
+    newItems.push(newItems.splice(index, 1)[0]); // Move the item to the end
+    return newItems;
+  })
+}
+
   return (
-    <main className="py-10 bg-black h-screen ">
+    <main className="py-10 bg-black min-h-screen ">
       <h1 className="font-bold text-4xl text-center text-white py-4">Your Todo</h1>
       <div className="max-w-lg mx-auto rounded-md w-screen space-y-6">
         <AddTodoForm onSubmit={addTodo}/>
         <div className="space-y-2">
           {todos.map(todo => (
-            <TodoItem key={todo.id} todo={todo} todos={todos} setTodos={setTodos} onCompletedChange={setTodoCompleted}/>
+            <TodoItem key={todo.id} todo={todo} todos={todos} setTodos={setTodos} onCompletedChange={setTodoCompleted} onClickChange={onClickChange}/>
           ))}
         </div>
         
@@ -43,6 +55,7 @@ function App() {
                 </p>
             )}
       </div>
+      <TodoSummary todos={todos} setTodos={setTodos}/>
     </main>
   )
 }
